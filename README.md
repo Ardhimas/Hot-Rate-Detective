@@ -1,0 +1,1 @@
+This is a work in progress chrome extension that looks at Hotwire's Hot Rates hotel listings and uses information from TripAdvisor to determine possibilities for the unknown hotels.
