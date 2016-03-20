@@ -2,7 +2,8 @@
 function setDOMInfo(info) {
   document.getElementById('hotelName').textContent   = info.hotelName;
   document.getElementById('taRating').textContent  = info.taRating;
-  document.getElementById('taReviews').textContent = info.taReviews;
+  document.getElementById('taReviewUB').textContent = info.taReviewUB;
+  document.getElementById('taReviewLB').textContent = info.taReviewLB;
 }
 
 // Once the DOM is ready...

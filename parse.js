@@ -1,9 +1,3 @@
-// $(document).ready(function(){
-//   $("div.details-description-hotelname.ng-binding").hide();
-//   $("h6.ng-binding").hide();
-//   $("div.total-reviews.ng-binding.ng-scope").hide();
-// });
-
 // Inform the background page that
 // this tab should have a page-action
 chrome.runtime.sendMessage({
@@ -17,9 +11,10 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
   if ((msg.from === 'popup') && (msg.subject === 'hotelInfo')) {
     // Collect the necessary data
     var domInfo = {
-      hotelName:   $("div.details-description-hotelname.ng-binding").length,
-      taRating:  $("h6.ng-binding").get(),
-      taReviews: $("div.total-reviews.ng-binding.ng-scope").get(0)
+      hotelName:   $("div.details-description-hotelname.ng-binding").html().split(" area",1),
+      taRating:  $("h6.ng-binding").html().split(" ",1),
+      taReviewLB: parseInt($("div.total-reviews.ng-binding.ng-scope").html().split("(")[1]),
+      taReviewUB: parseInt($("div.total-reviews.ng-binding.ng-scope").html().split("- ")[1])
     };
 
     // Directly respond to the sender (popup),
