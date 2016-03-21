@@ -4,6 +4,7 @@ function setDOMInfo(info) {
   document.getElementById('taRating').textContent  = info.taRating;
   document.getElementById('taReviewUB').textContent = info.taReviewUB;
   document.getElementById('taReviewLB').textContent = info.taReviewLB;
+  document.getElementById('recPercent').textContent = info.recPercent;
 }
 
 // Once the DOM is ready...
@@ -21,4 +22,14 @@ window.addEventListener('DOMContentLoaded', function () {
         //    from the receiving end (content script)
         setDOMInfo);
   });
+});
+
+$.get("http://hotwirehotellist.com/downtown-austin-and-town-lake/", function(data) {
+    // load response text into a new page element
+    var fakePage = document.createElement("html");
+    fakePage.innerHTML = data;
+
+    // find the desired element within the new page element
+    var statone = $(fakePage).find("#div5431 > h4 > a").html();
+    console.log(statone);
 });
