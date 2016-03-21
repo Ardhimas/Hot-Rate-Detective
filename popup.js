@@ -30,6 +30,8 @@ $.get("http://hotwirehotellist.com/downtown-austin-and-town-lake/", function(dat
     fakePage.innerHTML = data;
 
     // find the desired element within the new page element
-    var statone = $(fakePage).find("#div5431 > h4 > a").html();
-    console.log(statone);
+    var knownRecPercent = $(fakePage).find("#div19105 > p:nth-child(2)").first().contents().filter(function() {
+      return this.nodeType == 3;
+    }).text().split(" recommended",1)[0].trim();
+    console.log(knownRecPercent);
 });
