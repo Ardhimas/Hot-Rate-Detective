@@ -5,6 +5,7 @@ function setDOMInfo(info, possibilities) {
   document.getElementById('taReviewUB').textContent = info.taReviewUB;
   document.getElementById('taReviewLB').textContent = info.taReviewLB;
   document.getElementById('recPercent').textContent = info.recPercent;
+  document.getElementById('hwRating').textContent = info.hwRating;
   var hotelList = $.makeArray(possibilities).join();
   document.getElementById('possibleHotels').textContent = hotelList;
   console.log(possibilities);
@@ -18,7 +19,7 @@ function matchHotels(info) {
   var dfd = $.Deferred();
   dfd.done(function(){
     setDOMInfo(info,possibilities);
-  })
+  });
   $.get(areaUrl, function(data) {
     // load response text into a new page element
     var tempPage = document.createElement("html");
@@ -30,7 +31,9 @@ function matchHotels(info) {
         return this.nodeType == 3;
       }).text().split(" recommended",1)[0].trim();
       // console.log(knownRecPercent);
-      if (info.recPercent == knownRecPercent) {
+      var knownRating = $(this).find("b:nth-child(1) > img").attr("src").replace("/images/","").replace(".png","");
+      //console.log(knownRating);
+      if (info.recPercent == knownRecPercent && info.hwRating == knownRating) {
         // possibilities.push(knownRecPercent);
         var knownHotel = $(this).siblings().text().split(" Monday")[0].trim();
         possibilities.push(knownHotel);

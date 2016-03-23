@@ -11,11 +11,12 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
   if ((msg.from === 'popup') && (msg.subject === 'hotelInfo')) {
     // Collect the necessary data
     var domInfo = {
-      hotelName:   $("div.details-description-hotelname.ng-binding").html().split(" area",1),
-      taRating:  $("h6.ng-binding").html().split(" ",1),
-      taReviewLB: parseInt($("div.total-reviews.ng-binding.ng-scope").html().split("(")[1]),
-      taReviewUB: parseInt($("div.total-reviews.ng-binding.ng-scope").html().split("- ")[1]),
-      recPercent: $("span.hw-recommendation-percentage").html()
+      hotelName:   $("div.details-description-hotelname.ng-binding").text().split(" area",1),
+      taRating:  $("h6.ng-binding").text().split(" ",1),
+      taReviewLB: parseInt($("div.total-reviews.ng-binding.ng-scope").text().split("(")[1]),
+      taReviewUB: parseInt($("div.total-reviews.ng-binding.ng-scope").text().split("- ")[1]),
+      recPercent: $("span.hw-recommendation-percentage").text(),
+      hwRating: $("div.details-summary-ratings > img").attr("data-star").replace(".","")
     };
     
     // var areaUrl = domInfo.hotelName.split(" ");
@@ -26,3 +27,6 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
     response(domInfo);
   }
 });
+
+// #div14247 > p:nth-child(2) > b:nth-child(1) > img
+
